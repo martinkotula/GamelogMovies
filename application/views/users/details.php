@@ -1,4 +1,4 @@
-<div id="main_content">
+ï»¿<div id="main_content">
 <h2><?php echo $user ?></h2>
 <div id="user_details">
 <p>Liczba recenzji: <?php echo $reviews_count; ?></p>
@@ -6,7 +6,7 @@
 </div>
 <div id="navigation">
 <?php echo form_open("users/details/{$userID}/{$sort}/{$order}"); ?>
-Liczba wyników na stronie: <input type="text" class="text" name="number" id="number" value="<?php echo $how_many; ?>" size="5" maxlength="15" />
+Liczba wynikÃ³w na stronie: <input type="text" class="text" name="number" id="number" value="<?php echo $how_many; ?>" size="5" maxlength="15" />
 <input type="submit" class="submit button" name="sort" value="Go!" />
 <?php echo form_close(); ?>
 </div>
@@ -32,7 +32,7 @@ Liczba wyników na stronie: <input type="text" class="text" name="number" id="num
 	<table>
 		<tr id="table_header">
 			<th>
-				<?php echo anchor(base_url()."users/details/{$userID}/1/{$order}/{$how_many}/", 'Tytu³', $attr1); ?>
+				<?php echo anchor(base_url()."users/details/{$userID}/1/{$order}/{$how_many}/", 'TytuÅ‚', $attr1); ?>
 			</th>
 			<th>
 				<?php echo anchor(base_url()."users/details/{$userID}/2/{$order}/{$how_many}/", 'Ocena', $attr2); ?>

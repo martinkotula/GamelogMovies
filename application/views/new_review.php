@@ -1,4 +1,4 @@
-<div id="main_content">
+ï»¿<div id="main_content">
 	<div id="edit_review">
 	<?php 
 		$rating = array(
@@ -10,7 +10,7 @@
 		
 		echo '<div class="clear toggle-one" id="t_insert_title">' 
 		  . form_open('edit/new_title_insert/') 
-		  . '<p class="left">Nowy tytu³: ' . form_input('movie_title','','maxlength="100" class="required"'). ' Oryginalny tytu³: '
+		  . '<p class="left">Nowy tytuÅ‚: ' . form_input('movie_title','','maxlength="100" class="required"'). ' Oryginalny tytuÅ‚: '
 		  . form_input('original_title', '', 'maxlength="100"')
 		  . '</p><input type="image" src="'.base_url().'/assets/images/check32.png" alt="Dodaj" name="title_insert" title="Dodaj" class="left"/>'
 		  . form_close(). '</div>';	
@@ -24,7 +24,7 @@
 			
 		echo '<div class="clear" id="review_details">' 		
 		.'<p id="author">Autor: ' . $user .'</p>'		
-		.'<p class="clear"><label for="review_content">Tre¶æ:</label><br />'. form_textarea(array ('name'=>'review_content', 'id'=>'review_content',  'rows'=>15)). '</p> ' 
+		.'<p class="clear"><label for="review_content">TreÂ¶Ä‡:</label><br />'. form_textarea(array ('name'=>'review_content', 'id'=>'review_content',  'rows'=>15)). '</p> ' 
 		.'<p class="left">Ocena: '. form_dropdown('rating', $rating, '5'). '</p>'				
 		. '<input type="image" src="'.base_url().'/assets/images/check32.png" alt="Zapisz" name="Save" value="Save" title="Zapisz" class="clear left"/>'		
 		. form_close().'</div>';

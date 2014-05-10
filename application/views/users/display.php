@@ -1,8 +1,8 @@
-<div id="main_content">
+﻿<div id="main_content">
 <h2>Gamelog users</h2>
 <div id="navigation">
 <?php echo form_open("users/display/{$sort}/{$order}"); ?>
-Liczba wynik�w na stronie: <input type="text" class="text" name="number" id="number" value="<?php echo $how_many; ?>" size="5" maxlength="15" />
+Liczba wyników na stronie: <input type="text" class="text" name="number" id="number" value="<?php echo $how_many; ?>" size="5" maxlength="15" />
 <input type="submit" class="submit button" name="sort" value="Go!" />
 </div>
 <?php echo form_close(); ?>

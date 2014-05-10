@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 	class Movies_corner extends CI_Controller
 	{
 		function __construct()
@@ -20,7 +20,7 @@
 				$main_nav[] = '<li class="moderator"><a href="'. base_url() . 'moderator">Moderator</a></li>';
 				$main_nav[] = '<li><a href="'.base_url() . 'feed/rss">RSS gen</a></li>';
 				$main_nav[] = '<li class=""><a href="'. base_url() . 'edit/">Nowa recenzja</a></li>';
-				$main_nav[] = '<li class=""><a href="'. base_url() . 'moderator/import/">Importuj</a></li>';
+				
 			}
 			if( $user_id && !$is_moderator )
 			{

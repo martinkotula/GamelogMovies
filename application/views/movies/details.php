@@ -1,4 +1,4 @@
-<div id="main_content">
+ï»¿<div id="main_content">
 	<h1 id="movie_title"><?php echo $movie->MovieTitle?></h1>
 	<h1 id="original_title"><?php echo $movie->OriginalTitle; ?></h1>
 	
@@ -10,8 +10,8 @@
 			. '<div class="toggle-one" id="t_edit_title">' 
 			. form_open('movies/update_title/' )
 			.form_hidden('movieID', $movie->MovieID)
-			. '<p class="left">Modyfikuj tytu³: ' . form_input('movie_title',set_value('movie_title',$movie->MovieTitle),'maxlength="100" class="required"')
-			. ' Oryginalny tytu³: '
+			. '<p class="left">Modyfikuj tytuÅ‚: ' . form_input('movie_title',set_value('movie_title',$movie->MovieTitle),'maxlength="100" class="required"')
+			. ' Oryginalny tytuÅ‚: '
 			. form_input('original_title', set_value('original_title', $movie->OriginalTitle), 'maxlength="100"')
 			. '</p><input type="image" src="'.base_url().'/assets/images/check32.png" alt="Zapisz" name="title_edit" title="Zapisz" class="left"/>'		
 			. form_close()
@@ -19,7 +19,7 @@
 			
 	}
 	?>
-	<p id="movie_rating" class="clear">¦rednia ocena: <span><?php echo round($rating,2); ?></span></p>
+	<p id="movie_rating" class="clear">Åšrednia ocena: <span><?php echo round($rating,2); ?></span></p>
 	<?php foreach ( $reviews as $r ) : ?>	
 
 			<a name="<?php echo $r->PostID; ?>" ></a>
@@ -31,8 +31,8 @@
 						<p class="rating">Ocena: <span><?php echo $r->Rating; ?></span></p>
 						<div class="review_nav clear">
 							<ul>
-								<li><a class="go_to_source" href="http://www.gamelog.pl/forum2/viewtopic.php?p=<?php echo $r->PostID .'#'.$r->PostID ?>"title="Zobacz oryginaln± wiadomo¶æ"></a></li>
-								<li><a class="error_report" id="<?php echo $r->ReviewID ?>" href="" title="Zg³o¶ b³±d"></a></li>		
+								<li><a class="go_to_source" href="http://www.gamelog.pl/forum2/viewtopic.php?p=<?php echo $r->PostID .'#'.$r->PostID ?>"title="Zobacz oryginalnÂ± wiadomoÂ¶Ä‡"></a></li>
+								<li><a class="error_report" id="<?php echo $r->ReviewID ?>" href="" title="ZgÅ‚oÂ¶ bÅ‚Â±d"></a></li>		
 								<?php if( $r->CanEdit): ?>
 									<li><?php echo anchor('edit/review/'.$r->ReviewID,' ', array('class'=>'edit', 'title'=>'Edit')); ?></li>
 								<?php endif; ?>
@@ -48,11 +48,11 @@
 	<?php endforeach ?>       
 	
 
-	<div id="dialog" title="Zg³o¶ b³±d">
+	<div id="dialog" title="ZgÅ‚oÂ¶ bÅ‚Â±d">
 			<div id="loading">
 			</div>
 			<div id="result">
-			<p>Dziêkujê za zg³oszenie b³êdu</p>
+			<p>DziÄ™kujÄ™ za zgÅ‚oszenie bÅ‚Ä™du</p>
 			</div>
 			<form>				
 				<input type="hidden" id="postID" name="postID" value="value" />

@@ -1,4 +1,4 @@
-<div>
+﻿<div>
 <a href="<?php echo base_url();?>"><h1 id="logo">GameLog - movies corner</h1></a>
 
 </div>

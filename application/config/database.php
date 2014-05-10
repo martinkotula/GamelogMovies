@@ -40,7 +40,7 @@ $active_record = TRUE;
 
 $db['devel']['hostname'] = "localhost";
 $db['devel']['username'] = "root";
-$db['devel']['password'] = "test";
+$db['devel']['password'] = "admin";
 $db['devel']['database'] = "gamelogmovies";
 $db['devel']['dbdriver'] = "mysql";
 $db['devel']['dbprefix'] = "";
@@ -48,6 +48,6 @@ $db['devel']['pconnect'] = TRUE;
 $db['devel']['db_debug'] = TRUE;
 $db['devel']['cache_on'] = FALSE;
 $db['devel']['cachedir'] = "";
-$db['devel']['char_set'] = "latin2";
-$db['devel']['dbcollat'] = "latin2_general_ci";
+$db['devel']['char_set'] = "utf8";
+$db['devel']['dbcollat'] = "utf8_general_ci";
 /* End of file database.php */

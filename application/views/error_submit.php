@@ -1,8 +1,8 @@
-<div id="main_content">
-	<p>B³±d zosta³ zg³oszony.
+ï»¿<div id="main_content">
+	<p>BÅ‚Â±d zostaÅ‚ zgÅ‚oszony.
 	<?php
   	$url = htmlspecialchars($_SERVER['HTTP_REFERER']);
-  	echo "<a href='$url'>Powrót</a>";
+  	echo "<a href='$url'>PowrÃ³t</a>";
 	?> 
 	</p>
 </div>

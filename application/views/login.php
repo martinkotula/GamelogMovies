@@ -1,4 +1,4 @@
-<div id="main_content">
+﻿<div id="main_content">
 <div id="login-form">
 <?php
 	echo form_open('login/validate');	

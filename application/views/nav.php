@@ -1,7 +1,7 @@
-<div id="links">
+﻿<div id="links">
 	<ul>		
 		<li class="movies"><a href="<?php echo base_url() . 'movies'; ?>" >Filmy</a></li>
-		<li class="users"><a href="<?php echo base_url() . 'users/display'; ?>">U�ytkownicy</a></li>
+		<li class="users"><a href="<?php echo base_url() . 'users/display'; ?>">Użytkownicy</a></li>
 		<?php foreach( $main_nav as $link ) 
 				echo $link;
 		?>

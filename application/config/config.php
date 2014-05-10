@@ -11,7 +11,7 @@
 |	http://example.com/
 |
 */
-$config['base_url']	= "http://localhost.pl";
+$config['base_url']	= "http://localhost/gmc/";
 
 /*
 |--------------------------------------------------------------------------
@@ -77,7 +77,7 @@ $config['language']	= "english";
 | that require a character set to be provided.
 |
 */
-$config['charset'] = "iso-8859-2";
+$config['charset'] = "utf-8";
 
 /*
 |--------------------------------------------------------------------------
@@ -324,6 +324,7 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+$config['review_sync_key'] = 'XYZ';
 
 /* End of file config.php */
 /* Location: ./system/application/config/config.php */

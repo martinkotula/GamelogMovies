@@ -1,4 +1,4 @@
-<div id="main_content">
+ï»¿<div id="main_content">
 	<div id="navigation">
 		<?php 
 			echo form_open('movies/display', array('class'=>'sorter', 'id'=>'data_sorter'));
@@ -6,17 +6,17 @@
 		 ?>
 		 Opcje sortowania:
 			<select name="sort" size="1">
-				<option value="1" <?php if( $sort === '1' ) echo $selected; ?> >Tytu³</option>
+				<option value="1" <?php if( $sort === '1' ) echo $selected; ?> >TytuÅ‚</option>
 				<option value="2" <?php if( $sort === '2' ) echo $selected; ?> >Ocena</option>
 				<option value="3" <?php if( $sort === '3' ) echo $selected; ?> >Liczba recenzji</option>
 				
 			</select>
 			<select name="order" size="1">
-				<option value="ASC" <?php if( $order === 'ASC' ) echo $selected; ?> >rosn±co</option>
-				<option value="DESC" <?php if( $sort === 'DESC' ) echo $selected; ?> >malej±co</option>	
+				<option value="ASC" <?php if( $order === 'ASC' ) echo $selected; ?> >rosnÂ±co</option>
+				<option value="DESC" <?php if( $sort === 'DESC' ) echo $selected; ?> >malejÂ±co</option>	
 			</select>
 			<br />
-			Liczba wyników na stronie: <input type="text" class="text" name="number" value="<?php echo $how_many;?>"  />
+			Liczba wynikÃ³w na stronie: <input type="text" class="text" name="number" value="<?php echo $how_many;?>"  />
 			<input type="submit" class="submit button" name="submit" value="Sortuj" />
 		<?php echo form_close(); ?>
 	</div>

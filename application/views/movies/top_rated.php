@@ -1,12 +1,12 @@
-<div id="main_content">
-<h2>Najwyøej oceniane</h2>
+Ôªø<div id="main_content">
+<h2>Najwy≈ºej oceniane</h2>
 	<div id="navigation">
 		<?php echo form_open("movies/top_rated"); ?>
-		Liczba wynikÛw na stronie: <input type="text" class="text" name="number" id="number" value="<?php echo $how_many; ?>" size="5" maxlength="15" />
+		Liczba wynik√≥w na stronie: <input type="text" class="text" name="number" id="number" value="<?php echo $how_many; ?>" size="5" maxlength="15" />
 		<input type="submit" class="submit button" name="sort" value="Go!" />
 		<?php echo form_close(); ?>
 	</div>
-	<p>Wszystkie filmy ktÛre uzyska≥y co najmniej 5 g≥osÛw</p>
+	<p>Wszystkie filmy kt√≥re uzyska≈Çy co najmniej 5 g≈Ços√≥w</p>
 	<ul>
 	<div class="pagination"><?php echo $links ?></div>
 	<?php foreach ( $movies as $m ) : ?>

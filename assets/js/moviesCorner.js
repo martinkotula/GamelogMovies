@@ -1,4 +1,4 @@
-$(document).ready(function($) {
+﻿$(document).ready(function($) {
               
        $(".recent_review a").hover(function() {
        		$(this).stop().animate({paddingLeft : "10px"},200);

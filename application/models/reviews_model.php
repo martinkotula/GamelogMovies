@@ -74,8 +74,16 @@
 		
 		function get_recent($how_many,$offset=0)
 		{
-			$sql = "SELECT r.MovieID, r.PostID, r.DatePosted, r.Rating, m.MovieTitle, u.UserName FROM Reviews r" .
+			$sql = "SELECT r.MovieID
+					     , r.PostID
+						 , r.DatePosted
+						 , r.Rating
+						 , r.Review
+						 , rc.Code
+						 , m.MovieTitle
+						 , u.UserName FROM Reviews r" .
     				" JOIN Movies m ON m.MovieID = r.MovieID" .
+					" JOIN ReviewCategories rc ON rc.ReviewCategoryId = r.ReviewCategoryId" .
     				" JOIN GamelogUsers u ON u.UserID = r.UserID" .
     				" ORDER BY r.DatePosted DESC, m.MovieTitle " .
     				" LIMIT ?,?";

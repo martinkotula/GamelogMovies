@@ -8,27 +8,31 @@
 			return $query->result_array();
 		}
 		
-		function get_top_rated($how_many, $offset=0)
+		function get_top_rated($categoryCode, $how_many, $offset=0)
 		{
-			$sql = "SELECT Reviews.MovieID, MovieTitle, AVG(Rating) AS AvgRating, COUNT(*) AS ReviewsCount FROM Movies"
+			$sql = "SELECT Reviews.MovieID, MovieTitle, AVG(Rating) AS AvgRating, COUNT(*) AS TotalReviews FROM Movies"
   							." JOIN Reviews ON Movies.MovieID = Reviews.MovieID"
+							." JOIN ReviewCategories rc ON Movies.ReviewCategoryId = rc.ReviewCategoryId"
+							." WHERE UPPER(rc.Code) = UPPER(?)"
   							." GROUP BY Reviews.MovieID"
-  							." HAVING ReviewsCount > 4"
-  							." ORDER BY AvgRating DESC, ReviewsCount DESC"
+  							." HAVING TotalReviews > 4"
+  							." ORDER BY AvgRating DESC, TotalReviews DESC"
   							." LIMIT ?,?";
-			$query = $this->db->query($sql, array( (int)$offset, (int)$how_many) );					
+			$query = $this->db->query($sql, array( $categoryCode, (int)$offset, (int)$how_many) );					
 			
   			$data = array();
   			get_data($query, $data);
   			return $data;
 		}
 		
-		function count_top_rated()
+		function count_top_rated($categoryCode)
 		{
-			$query = $this->db->query("SELECT COUNT(*) AS TopRatedCount FROM (SELECT COUNT(*) AS nr FROM Reviews" .
+			$query = $this->db->query("SELECT COUNT(*) AS TopRatedCount FROM " .
+					" (SELECT COUNT(*) AS nr FROM Reviews r JOIN ReviewCategories rc ON r.ReviewCategoryId = rc.ReviewCategoryId" .
+					" WHERE UPPER(rc.Code) = UPPER(?)".
 					" GROUP BY MovieID" .
-					" HAVING nr > 4) AS tmp");
-					
+					" HAVING nr > 4) AS tmp", array($categoryCode));
+			
 			return $query->row()->TopRatedCount;
 		}
 		
@@ -54,37 +58,43 @@
 			return $data;
 		}
 		
-		function get_movies( $sort_by, $order, $how_many, $offset)
+		function get_movies( $categoryCode, $sortBy, $order, $pageSize, $offset)
 		{
-			$sql = "SELECT m.MovieID, MovieTitle, OriginalTitle, AVG(Rating) AS AvgRating, COUNT(*) AS TotalReviews"			
+			$sql = "SELECT m.MovieID, MovieTitle, OriginalTitle, ROUND(AVG(Rating),2) AS AvgRating, COUNT(*) AS TotalReviews"			
   				." FROM Movies m JOIN Reviews r ON m.MovieID = r.MovieID"
+				." JOIN ReviewCategories rc ON m.ReviewCategoryId = rc.ReviewCategoryId"
+				." WHERE UPPER(rc.Code) = UPPER(?)"
 				." GROUP BY m.MovieID"
-				." ORDER BY ". $this->db->escape_str($sort_by) . ' ' . $this->db->escape_str($order) .", MovieTitle ASC" 
+				." ORDER BY ". $this->db->escape_str($sortBy) . ' ' . $this->db->escape_str($order) .", MovieTitle ASC" 
 				." LIMIT ?,?";
-			$query = $this->db->query($sql, array((int)$offset, (int)$how_many));
+			$query = $this->db->query($sql, array($categoryCode, (int)$offset, (int)$pageSize));
   			
   			$data = array();
   			get_data($query, $data);
   			return $data;			
 		}
 		
-		function count_movies()
+		function count_movies($categoryCode)
 		{
 			$sql = "SELECT m.MovieID"			
   				." FROM Movies m JOIN Reviews r ON m.MovieID = r.MovieID"
-				." GROUP BY m.MovieID";				 			
-			$query = $this->db->query($sql);
+				." JOIN ReviewCategories rc ON m.ReviewCategoryId = rc.ReviewCategoryId"
+				." WHERE UPPER(rc.Code) = UPPER(?)"
+				." GROUP BY m.MovieID";
+				
+			$query = $this->db->query($sql, array((string)$categoryCode));
 			return count($query->result());
 		}
 		
-		
-		
 		function get_movie($movieID)
 		{
-			$this->db->where('MovieID',$movieID);
-			$this->db->select('MovieID, MovieTitle, OriginalTitle');
-			$query = $this->db->get('Movies');
-						
+			$sql = "SELECT m.MovieID, MovieTitle, OriginalTitle, rc.Code as CategoryCode"
+  				." FROM Movies m"
+				." JOIN ReviewCategories rc ON m.ReviewCategoryId = rc.ReviewCategoryId"
+				." WHERE m.MovieID = ?";
+				
+			$query = $this->db->query($sql, array((int)$movieID));
+
 			if($query->num_fields()>0)
   			{  				  				
   				return $query->row();

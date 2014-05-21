@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'gmc';
-  src: url('../font/gmc.eot?3898166');
-  src: url('../font/gmc.eot?3898166#iefix') format('embedded-opentype'),
-       url('../font/gmc.woff?3898166') format('woff'),
-       url('../font/gmc.ttf?3898166') format('truetype'),
-       url('../font/gmc.svg?3898166#gmc') format('svg');
+  src: url('../fonts/gmc.eot?3898166');
+  src: url('../fonts/gmc.eot?3898166#iefix') format('embedded-opentype'),
+       url('../fonts/gmc.woff?3898166') format('woff'),
+       url('../fonts/gmc.ttf?3898166') format('truetype'),
+       url('../fonts/gmc.svg?3898166#gmc') format('svg');
   font-weight: normal;
   font-style: normal;
 }

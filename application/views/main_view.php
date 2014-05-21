@@ -27,14 +27,14 @@
 <div id="nav"><?php $this->load->view('nav'); ?></div>
 <div class="container">			      
 	<?php $this->load->view($view);?>	
-	<hr />
+<hr />
 	<footer>
 	<p>
 		<?php echo safe_mailto('gamelgmovies@gmail.com', 'Kontakt') ?>
 	</p>	
-	
 	</footer>
 </div>
+	
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

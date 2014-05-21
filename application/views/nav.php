@@ -11,9 +11,16 @@
         </div>
         <div class="navbar-collapse collapse" style="height: 1px;">
           <ul class="nav navbar-nav">
-			<li><?php echo anchor('reviews/top', 'Top') ?></li>
-            <li><?php echo anchor('reviews/films', '<div title="Code: 0xe802"><i class="icon-video"></i>Filmy</div>') ?></li>
-			<li><?php echo anchor('reviews/books', '<div title="Code: 0xe804"><i class="icon-book"></i>Książki</div>') ?></li>
+			<li class="dropdown"><?php echo anchor('reviews/top', '<span class="glyphicon glyphicon-star" ></span> Top <b class="caret"></b>', array('class'=>'dropdown-toggle', 'data-toggle'=>'dropdown')) ?>
+				<ul class="dropdown-menu">
+					<li><?php echo anchor('reviews/top/films', 'Filmy') ?></li>
+					<li><?php echo anchor('reviews/top/books', 'Książki') ?></li>
+					<li><?php echo anchor('reviews/top/games', 'Gry') ?></li>
+				</ul>
+			</li>		          
+        </li>
+            <li><?php echo anchor('reviews/films', '<span class="glyphicon glyphicon-film" ></span> Filmy') ?></li>
+			<li><?php echo anchor('reviews/books', '<span class="glyphicon glyphicon-book" ></span> Książki') ?></li>
 			<li><?php echo anchor('reviews/games', '<div title="Code: 0xe803"><i class="icon-gamepad"></i>Gry</div>') ?></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">

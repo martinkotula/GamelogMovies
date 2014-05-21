@@ -32,7 +32,7 @@
 		
 		function get_reviews($movieID, $how_many, $offset)
 		{
-			$sql = "SELECT r.Review, r.DatePosted, r.Rating, r.UserID, r.ReviewID, r.PostID, u.UserName, 0 CanEdit, NULL Permalink FROM Reviews r"
+			$sql = "SELECT r.Review, r.DatePosted, r.Rating, r.UserID, r.ReviewID, r.PostID, u.UserName, r.IsNewForum, NULL Permalink, NULL HomeLink FROM Reviews r"
 										." JOIN GamelogUsers u ON u.UserID = r.UserID"
 										." WHERE r.MovieID = ?"
 										." ORDER BY r.DatePosted ASC"

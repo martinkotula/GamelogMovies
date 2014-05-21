@@ -51,7 +51,7 @@ $autoload['libraries'] = array('database','exceptions/key_not_found_exception','
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('data','url','form');
+$autoload['helper'] = array('data','url','form','html');
 
 
 /*

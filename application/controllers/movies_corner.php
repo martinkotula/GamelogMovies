@@ -34,6 +34,7 @@
 				$main_nav[] = '<li class="login"><a href="'. base_url() . 'login">Login</a></li>';
 				
 			$this->data['main_nav'] = $main_nav;
+			$this->data['activeLink'] = '';
 		}
 		
 		function _parse_post( &$params )

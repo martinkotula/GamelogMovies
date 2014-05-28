@@ -21,7 +21,7 @@
 			<?php foreach($recent_reviews as $r) : ?>
 				<tr>
 					<td>
-						<?php echo anchor("reviews/details/{$r->MovieID}#{$r->PostID}", $r->MovieTitle); ?> 
+						<?php echo ReviewCategoryIcon($r->Code,anchor("reviews/details/{$r->MovieID}#{$r->PostID}", $r->MovieTitle)); ?> 
 					</td>
 					<td>
 						<small><?php echo $r->UserName; ?></small>

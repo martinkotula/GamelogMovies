@@ -13,6 +13,7 @@
 			$this->order_options = array('1'=>'ASC', '2'=>'DESC');
 			$this->sort_options = array('1'=>'UserName', '2'=>'ReviewsCount');
 			$this->sort_reviews_options = array('1'=>'MovieTitle', '2'=>'Rating', '3'=>'DatePosted');
+			$this->data['activeLink'] = 'users';
 		}
 		
 		function display($sort='1', $order='1', $how_many=30, $offset=0)

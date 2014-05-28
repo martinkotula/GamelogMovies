@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="<?php echo base_url()?>assets/css/animation.css"><!--[if IE 7]><link rel="stylesheet" href="<?php echo base_url()?>assets/css/gmc-ie7.css"><![endif]-->
 	<style type="text/css">
 	body {
-  
+  padding-top: 20px;
   padding-bottom: 20px;
 }
 	</style>

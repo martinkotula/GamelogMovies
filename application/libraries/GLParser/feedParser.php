@@ -90,7 +90,7 @@
 					$review['rating'] = $review_matches['rating'][$k];
 					$review['postId'] = $this->parsePostId($entry->id);
 					$review['id'] = (string)$entry->id;
-					
+					$review['source'] = $feedUrl;
 					array_push($reviews,$review);
 				}		
 			}
@@ -104,10 +104,9 @@
 			$reviews['FILMS'] = $this->parseReviews(9,4);
 			$reviews['GAMES'] = $this->parseReviews(4,2);
 			//$reviews['BOOKS'] = $this->parseReviews(8,4);
-						
-			
+								
 			return $reviews;
 		}
 
-	}
+	}	
 ?>

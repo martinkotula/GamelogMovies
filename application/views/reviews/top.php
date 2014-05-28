@@ -1,5 +1,5 @@
 ﻿
-<h2>Najwyżej oceniane</h2>
+<h2><?php echo $title; ?></h2>
 	<div id="navigation">
 		<?php echo form_open("reviews/top/{$activeLink}", array('class'=>'form-inline', 'role'=>'form')); ?>
 		<div class="form-group">
@@ -22,7 +22,7 @@
 				<div class="col-xs-2">
 					<strong>Liczb recenzji</strong>
 				</div>
-			</div
+			</div>
 			<?php foreach($titles as $r) : ?>
 				<div class="row">
 					<div class="col-xs-6">

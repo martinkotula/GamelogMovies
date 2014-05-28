@@ -20,6 +20,14 @@
 			  </div>';
 	}
 	
+	function SortIndicator($order)
+	{
+		if($order == 'asc')
+			echo '<span class="glyphicon glyphicon-chevron-up" /></span>';
+			
+		if($order == 'desc')
+			echo '<span class="glyphicon glyphicon-chevron-down" /></span>';
+	}
 	?>
 
 	

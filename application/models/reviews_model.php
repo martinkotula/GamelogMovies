@@ -70,8 +70,7 @@
 			$this->db->where('ReviewID',$reviewID);
 			$this->db->delete('BadReviews');
 		}
-		
-		
+				
 		function get_recent($how_many,$offset=0)
 		{
 			$sql = "SELECT r.MovieID
@@ -145,7 +144,7 @@
 			return $query->row()->PostID;
 		}
 		
-		function insert( $postID, $userID, $movieID, $reviewContent,$datePosted, $reviewRating, $isForumPost)
+		function insert( $postID, $userID, $movieID, $reviewContent,$datePosted, $reviewRating, $isForumPost, $source)
 		{
 			
 			$insert_data = array( 
@@ -156,6 +155,7 @@
 									,'DatePosted'=>$datePosted
 									,'Rating'=>$reviewRating
 									,'Is_Forum_Post'=>$isForumPost
+									, 'Source' => $source
 								);
 			$this->db->insert('Reviews', $insert_data);
 

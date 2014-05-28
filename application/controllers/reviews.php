@@ -15,9 +15,10 @@
 			
 			$this->sort_fields = array( '1' => 'MovieTitle', '2'=>'AvgRating', '3'=>'TotalReviews');
 			$this->categoryCodes = array( 'films' => 'Filmy', 'books' => 'Książki', 'games' => 'Gry');
+			$this->order = array( '1' => 'ASC', '2' => 'DESC');
 		}
 		
-		function index($categoryCode, $sort='1', $order='ASC', $pageSize=30, $offset=0)
+		function index($categoryCode, $sort='1', $order='1', $pageSize=30, $offset=0)
 		{
 			$params = array('sort'=>&$sort, 'order'=>&$order, 'number'=>&$pageSize);
 			
@@ -30,7 +31,7 @@
 			$config['uri_segment'] = 6;
 			$this->pagination->initialize($config);
 											
-			$this->data['data'] = $this->movies_model->get_movies($categoryCode, $this->sort_fields["{$sort}"], $order, $pageSize, $offset);
+			$this->data['data'] = $this->movies_model->get_movies($categoryCode, $this->sort_fields["{$sort}"], $this->order["{$order}"], $pageSize, $offset);
 			$this->data['links'] =  $this->pagination->create_links();
 			$this->data['title'] = $this->categoryCodes["{$categoryCode}"];
 			
@@ -62,7 +63,7 @@
 				if($r->IsNewForum == 0)
 					$r->HomeLink = 'http://gamelog.pl/forum2/viewtopic.php?p='.$r->PostID;
 				else
-					$r->HomeLink = 'http://fsgk.pl/viewtopic.php?p='.$r->PostID;
+					$r->HomeLink = 'http://fsgk.pl/viewtopic.php?p='.$r->PostID .'#p'.$r->PostID;
 			}
 			
 			$this->data['view'] = 'reviews/details';
@@ -84,12 +85,13 @@
 			$this->pagination->initialize($config);
 			
 			$this->data['links'] = $this->pagination->create_links();
-			$this->data['title'] = 'Najwyżej oceniane';
+			$this->data['title'] = 'Najwyżej oceniane '.$this->categoryCodes["{$categoryCode}"];
 			$this->data['titles'] = $this->movies_model->get_top_rated($categoryCode, $pageSize, $offset);
 			$this->data['pageSize'] = $pageSize;
 			$this->data['view'] = 'reviews/top';			
 			$this->data['body_id'] = 'top';
 			$this->data['activeLink'] = 'top';
+			
 			$this->load->view('main_view',$this->data);
 		}
 		

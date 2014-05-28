@@ -32,9 +32,9 @@
 			$this->db->where("ReviewCategoryId", "$categoryId");
 			$this->db->select('MovieID');
 			$query = $this->db->get('Movies');
-						
-			if($query->num_fields()>0)
-  			{  				  	
+			
+			if($query->num_rows()>0)
+  			{
   				return $query->row()->MovieID;
   			}
   			return NULL;
@@ -48,8 +48,8 @@
 			$this->db->select('UserId');
 			$query = $this->db->get('GamelogUsers');
 						
-			if($query->num_fields()>0)
-  			{ 	
+			if($query->num_rows()>0)
+  			{				
   				return $query->row()->UserId;
   			}
   			return NULL;
@@ -65,10 +65,9 @@
 			return $this->db->insert('GamelogUsers', array('UserID'=>$gamelogID,'UserName'=>$nick));
 		}
 		
-		function insertReview($categoryId, $titleId, $userId, $review)
-		{
-		print_r($review['published']);
-			$insert_data = array('ReviewCategoryId' => $categoryId
+		function upsertReview($categoryId, $titleId, $userId, $review)
+		{		
+			$data = array('ReviewCategoryId' => $categoryId
 								,'PostID'=>$review['postId']
 								,'UserID'=>$userId
 								,'MovieID'=>$titleId
@@ -77,9 +76,28 @@
 								,'Rating'=>$review['rating']
 								,'Is_Forum_Post'=>TRUE
 								,'IsNewForum' => 1
+								,'Source' => $review['source']
 							);
-							
-			return $this->db->insert('Reviews', $insert_data);
+			if( $review['reviewId'] == NULL)				
+				$this->db->insert('Reviews', $data);
+			else{
+				$this->db->where('ReviewID', $review['reviewId']);
+				$this->db->update('Reviews', $data);
+			}
+		}
+		
+		function reviewExists($postId)
+		{
+			$this->db->where('PostID',$postId);
+			
+			$this->db->select('ReviewID');
+			$query = $this->db->get('Reviews');
+						
+			if($query->num_rows()>0)
+  			{ 	
+  				return $query->row()->ReviewID;
+  			}
+  			return NULL;
 		}
 	}
 

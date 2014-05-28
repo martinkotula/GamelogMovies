@@ -1,15 +1,17 @@
 ﻿<div id="main_content">
-<h2>Gamelog users</h2>
-<div id="navigation">
+<h2>Użytkownicy</h2>
+<div>
+<div class="form-group"> 
 <?php echo form_open("users/display/{$sort}/{$order}"); ?>
-Liczba wyników na stronie: <input type="text" class="text" name="number" id="number" value="<?php echo $how_many; ?>" size="5" maxlength="15" />
-<input type="submit" class="submit button" name="sort" value="Go!" />
-</div>
+<label for="text">Liczba wyników na stronie: </label><input type="text" class="text" name="number" id="number" value="<?php echo $how_many; ?>" size="5" maxlength="15" />
+<button type="submit" class="btn btn-default" name="submit" >Pokaż</button>
 <?php echo form_close(); ?>
-<table id="users">
+</div>
+</div>
+<table class="table table-hover">
 	<tr class="table_header">
 	<?php
-		$count = 1;
+		
 		$order_class = ($order === '1')?'asc':'desc'; 
 		$order = ( $order==='1' )? '2':'1';
 		$attr1 = array(); $attr2 = array();
@@ -19,18 +21,20 @@ Liczba wyników na stronie: <input type="text" class="text" name="number" id="nu
 			$attr2['class'] = 'selected '.$order_class ;									
 	?>
 		<th>
-		<?php echo anchor(base_url()."users/display/1/{$order}/{$how_many}",'Nick',$attr1); ?>			
+		<?php echo anchor(base_url()."users/display/1/{$order}/{$how_many}",'Nick',$attr1); ?>
+		<?php SortIndicator($sort === '1' ? $order_class : null); ?>
 		</th>
 		<th>
 		<?php echo anchor(base_url()."users/display/2/{$order}/{$how_many}",'Liczba recenzji',$attr2); ?>
+		<?php SortIndicator($sort === '2' ? $order_class : null); ?>
 		</th>
 	</tr>
 		<?php foreach ( $users as $user) : ?>
-		<tr class="<?php if(($count++ & 1) == FALSE) echo 'even'; else echo 'odd';?> ">
-			<td class="user_nickname" >
+		<tr >
+			<td>
 				<?php echo anchor(base_url()."users/details/{$user->UserID}",$user->UserName); ?>
 			</td>
-			<td class="user_reviews_count centered" >
+			<td>
 				<?php echo $user->ReviewsCount; ?>
 			</td>
 		</tr>

@@ -45,8 +45,8 @@ $route['scaffolding_trigger'] = "";
 $route['edit/(:num)'] = "edit/review/$1";
 $route['reviews/top'] = "reviews/top";
 $route['reviews/([a-z]+)'] = "reviews/index/$1";
-$route['reviews/([a-z]+)/(:num)/([A-Z]+)/(:num)'] = "reviews/index/$1/$2/$3/$4/";
-$route['reviews/([a-z]+)/(:num)/([A-Z]+)/(:num)/(:num)'] = "reviews/index/$1/$2/$3/$4/$5";
+$route['reviews/([a-z]+)/(:num)/(:num)/(:num)'] = "reviews/index/$1/$2/$3/$4/";
+$route['reviews/([a-z]+)/(:num)/(:num)/(:num)/(:num)'] = "reviews/index/$1/$2/$3/$4/$5";
 $route['home/list'] = "home/listrecent";
 $route['home/list/(:num)'] = "home/listrecent/$1";
 

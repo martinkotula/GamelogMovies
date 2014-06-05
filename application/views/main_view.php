@@ -30,7 +30,7 @@
 <hr />
 	<footer>
 	<p>
-		<?php echo safe_mailto('gamelgmovies@gmail.com', 'Kontakt') ?>
+		<?php echo safe_mailto('gamelogmovies@gmail.com', 'Kontakt') ?>
 	</p>	
 	</footer>
 </div>

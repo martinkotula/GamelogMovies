@@ -62,7 +62,7 @@
 		
 		function insertUser( $gamelogId, $nick )
 		{
-			return $this->db->insert('GamelogUsers', array('UserID'=>$gamelogID,'UserName'=>$nick));
+			return $this->db->insert('GamelogUsers', array('UserID'=>$gamelogId,'UserName'=>$nick));
 		}
 		
 		function upsertReview($categoryId, $titleId, $userId, $review)
@@ -89,7 +89,7 @@
 		function reviewExists($postId)
 		{
 			$this->db->where('PostID',$postId);
-			
+			$this->db->where('IsNewForum', 1);
 			$this->db->select('ReviewID');
 			$query = $this->db->get('Reviews');
 						

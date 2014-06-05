@@ -5,16 +5,13 @@
 	class ReviewsSync extends CI_Controller
 	{	
 
-		const MODE_NEW = 1;
-		const MODE_MERGE = 2;
-		
 		public function __construct()
 		{
 			parent::__construct();						
 			$this->load->model('gl_repository','db_manager');
 		}
 		
-		public function index($key, $mode)
+		public function index($key)
 		{			
 			if($key != $this->config->item('review_sync_key'))
 				redirect('home');
@@ -29,57 +26,62 @@
 			
 			if( isset($reviews['FILMS']) && count($reviews['FILMS']) > 0){
 				$filmCategoryId = $this->db_manager->getReviewCategory('FILMS');
-				$filmReviewsInserted = $this->_insertReviews($filmCategoryId, $reviews['FILMS'],$mode); 
+				$filmReviewsInserted = $this->_insertReviews($filmCategoryId, $reviews['FILMS']); 
 			}
 			
 			if( isset($reviews['GAMES']) && count($reviews['GAMES']) > 0){
 				$gameCategoryId = $this->db_manager->getReviewCategory('GAMES');
-				$gameReviewsInserted = $this->_insertReviews($gameCategoryId, $reviews['GAMES'],$mode); 
+				$gameReviewsInserted = $this->_insertReviews($gameCategoryId, $reviews['GAMES']); 
 			}
 			
 			if( isset($reviews['BOOKS']) && count($reviews['BOOKS']) > 0){
 				$booksCategoryId = $this->db_manager->getReviewCategory('BOOKS');
-				$bookReviewsInserted = $this->_insertReviews($gameCategoryId, $reviews['BOOKS'],$mode); 
+				$bookReviewsInserted = $this->_insertReviews($booksCategoryId, $reviews['BOOKS']); 
 			}
 			
-			return "{ filmReviews = ". $filmReviewsInserted ."; gameReviews =".$gameReviewsInserted."; bookReviews= ".$bookReviewsInserted."}";
+			echo "{ filmReviews = ". $filmReviewsInserted ."; gameReviews =".$gameReviewsInserted."; bookReviews= ".$bookReviewsInserted."}";
 		}
 		
-		function _insertReviews($reviewCategoryId, $reviews, $mode){
-			$lastPostDate = $this->db_manager->getLastReviewDateForCategory($reviewCategoryId);		
-				
+		function _insertReviews($reviewCategoryId, $reviews){			
+			
+			$reviewExists = array();
+			foreach( $reviews as $r)
+			{
+				$reviewExists[$r['postId']] = $this->db_manager->reviewExists($r['postId']);
+			}
+			
 			$i = 0;
 			foreach( $reviews as $r)
 			{		
-				$r['reviewId'] = NULL;
-				if($mode == self::MODE_NEW && $r['published'] <= $lastPostDate)
-					break;
-				if($mode == self::MODE_MERGE){
-					$reviewId = $this->db_manager->reviewExists($r['postId']);
-					$r['reviewId'] = $reviewId;
-				}				
+				$r['reviewId'] = NULL;				
+				if($reviewExists[$r['postId']] != NULL)
+					continue;
 				
 				$titleId = $this->db_manager->tryToGetTitleId($reviewCategoryId, $r['title']);
 				if(!isset($titleId)){
 					$titleId = $this->db_manager->insertMovie($reviewCategoryId, $r['title'], $r['original_title']);
+					$titleId = $this->db_manager->tryToGetTitleId($reviewCategoryId, $r['title']);
 				}
 				
 				$userId = $this->db_manager->tryToGetUserId($r['author']);
 				if(!isset($userId)){
 					$userId = $this->db_manager->insertUser( $r['gamelogId'], $r['author']);
+					$userId = $this->db_manager->tryToGetUserId($r['author']);
 				}
 				
-				$this->db_manager->upsertReview($reviewCategoryId, $titleId, $userId, $r);
-				$i++;
+				if(isset($titleId) && isset($userId)){					
+					$this->db_manager->upsertReview($reviewCategoryId, $titleId, $userId, $r);
+					$i++;
+				}
+				else{
+					echo 'Nie udało się dodać recenzji:'.var_dump($r);
+				}
+				
 			}
 			
 			return $i;
 		}
-		
-		public function test(){
-			$userId = $this->db_manager->tryToGetUserId('TEST');
-			
-		}
-	}
+	
+	}	
 	
 ?>

@@ -102,8 +102,12 @@
 			$reviews = array();
 	
 			$reviews['FILMS'] = $this->parseReviews(9,4);
-			$reviews['GAMES'] = $this->parseReviews(4,2);
-			//$reviews['BOOKS'] = $this->parseReviews(8,4);
+			
+			$reviews['GAMES_PC'] = $this->parseReviews(4,2);
+			$reviews['GAMES_PSP'] = $this->parseReviews(7,136);			
+			$reviews['GAMES'] = array_merge($reviews['GAMES_PC'], $reviews['GAMES_PSP']);
+			
+			$reviews['BOOKS'] = $this->parseReviews(8,37);
 								
 			return $reviews;
 		}
